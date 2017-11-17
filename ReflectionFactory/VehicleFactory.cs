@@ -1,6 +1,7 @@
 ﻿using System;
 using ReflectionFactory.Model;
 using System.Reflection;
+using System.Linq;
 
 namespace ReflectionFactory
 {
@@ -13,9 +14,9 @@ namespace ReflectionFactory
 
         public static BaseVehicle CreateVehicle(string name)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var type = assembly.GetType(name).FullName;
-            return (BaseVehicle)Activator.CreateComInstanceFrom(assembly.Location, type).Unwrap();
+            var currentAssembly = Assembly.GetExecutingAssembly();
+            var currentType = currentAssembly.GetTypes().SingleOrDefault(t => t.Name == name);
+            return (BaseVehicle)Activator.CreateInstance(currentType);
         }
     }
 }

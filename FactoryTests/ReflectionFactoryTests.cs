@@ -13,7 +13,7 @@ namespace FactoryTests
         public void CreateInstanceReflectionTest()
         {
             var vehicle1 = VehicleFactory.CreateVehicle<Car>();
-            var vehicle2 = VehicleFactory.CreateVehicle("ReflectionFactory.Model.Motorbike");
+            var vehicle2 = VehicleFactory.CreateVehicle("Motorbike");
 
             vehicle1.Should().BeOfType<Car>();
             vehicle1.Name.Should().Be("Car");
